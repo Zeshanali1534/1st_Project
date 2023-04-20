@@ -18,17 +18,17 @@ listofdict = list()
 file = pd.read_excel('Merged file.xlsx')
 listofregion = file.iloc[:, 0].tolist()
 listofwebsite = file.iloc[:, 1].tolist()
-for i in range(0,1000000):
+time.sleep(20)
+for i in range(20780,200000):
     datadict  = dict()
     driver.get(listofwebsite[i])
-    time.sleep(2)
+    time.sleep(1)
     datadict['Region'] =listofregion[i]
     datadict['Web'] =listofwebsite[i]
 
-    time.sleep(2)
     try:
         driver.find_element_by_xpath('//div[@class="btndetails14_contact opt19_btncontact tel_contact"]').click()
-        time.sleep(2)
+        time.sleep(1)
 
         driver.find_element_by_xpath('//a[@id="btn-contactpartel"]').click()
         time.sleep(0.5)
@@ -39,6 +39,7 @@ for i in range(0,1000000):
 
     print(datadict)
     listofdict.append(datadict)
+
     df = pd.DataFrame.from_dict(listofdict)  
-    df.to_excel(f'Other_Region_1.xlsx',index=False)
+    df.to_excel(f'20780_End.xlsx',index=False)
     print('Data Saved in Excel!!')
